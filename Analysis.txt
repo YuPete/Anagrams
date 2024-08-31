@@ -1,0 +1,43 @@
+/**
+ * @author Peter Yu 
+ */
+
+It took on average 0.689, 1.53, and 0.504 seconds for the program to finish for 
+rbt, bst, and hash flags, respectively. Here are the actual times:
++-------+-------+-------+-------+
+|       |  rbt  |  bst  |  hash |
++-------+-------+-------+-------+
+| Trial |       |       |       |
++-------+-------+-------+-------+
+|   1   | 0.735 | 1.606 | 0.501 |
+|   2   | 0.695 | 1.535 | 0.501 |
+|   3   | 0.645 | 1.480 | 0.497 |
+|   4   | 0.701 | 1.537 | 0.512 |
+|   5   | 0.671 | 1.490 | 0.507 |
++-------+-------+-------+-------+
+| Avg   | 0.689 | 1.530 | 0.504 |
++-------+-------+-------+-------+
+
+I expected hash to be the fastest because whenever it had to get or delete, it could just use the hash function to 
+find exactly its desired spot. The hash map offers average constant time complexity (O(1)) for these operations, 
+which is faster than the logarithmic time complexity (O(log n)) of tree-based structures. For the other two data
+ structures, they had to slowly traverse down the tree, doing comparisons at each level.
+
+I expected bst to have the worst performance because we added each entry one by one, likely making the tree 
+unbalanced and therefore suboptimal. The results of the timing matched my expectation, as hash was by far the 
+fastest, followed by rbt, and then finally bst.
+
+Between the two tree-based structures, the red-black tree (rbt) generally provides better performance than a 
+simple binary search tree (bst). The red-black tree is a balanced binary search tree, ensuring logarithmic time 
+complexity (O(log n)) for insertions and lookups, while a regular binary search tree can degrade to linear time 
+complexity (O(n)) in the worst case if the tree becomes unbalanced.
+
+However, I overestimated the cost of rebalancing the tree, which is employed by rbt. Therefore, I did not expect 
+it to be that fast and instead expected it to have similar or slightly better performance than bst, but trailing 
+behind hash by a lot. Instead, rbt's average was closer to hash than bst by a significant margin. It was 0.185 
+seconds slower than hash and 0.841 seconds faster than bst. I expected rbt to fit more in between hash and bst, 
+coming in at around 1 second.
+
+Thus, the observed run times align with the expected behavior of the different data structures.
+
+
